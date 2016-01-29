@@ -1,5 +1,5 @@
 /*!
- * jQuery Longclick v1.0.1 (2016-01-29)
+ * jQuery Longclick v1.0.2 (2016-01-29)
  * https://github.com/daraeman/jquery-longclick
  * Copyright 2016 David Rae
  * Released under the MIT license
@@ -35,7 +35,7 @@
 					did_fire = true;
 					mousedown_time = 0;
 					el.unbind( move );
-					long_callback();
+					long_callback( el );
 				}, long_duration );
 				if ( cancel_on_move ) {
 					el.on( move, function(e){
@@ -55,7 +55,7 @@
 				$( this ).unbind( move );
 				mousedown_time = 0;
 				if ( ! did_fire ) {
-					short_callback();
+					short_callback( $(this) );
 				}
 				did_fire = false;
 				return false;
