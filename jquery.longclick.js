@@ -1,5 +1,5 @@
 /*!
- * jQuery Longclick v1.0 (2016-01-29)
+ * jQuery Longclick v1.0.1 (2016-01-29)
  * https://github.com/daraeman/jquery-longclick
  * Copyright 2016 David Rae
  * Released under the MIT license
@@ -7,37 +7,38 @@
 
 (function( $ ) {
  
-    $.fn.longclick = function( long_callback, short_callback, long_duration ) {
+    $.fn.longclick = function( long_callback, short_callback, long_duration, cancel_on_move ) {
 
     	var timer,
 			did_fire = false,
 			mousedown_time = 0;
 		long_duration = ( parseInt( long_duration ) && (long_duration >= 0) ) ? long_duration : 500;
+		cancel_on_move = ( cancel_on_move );
 
 		if ( "ontouchstart" in document.documentElement ) {
-			var start = "touchstart";
-			var end = "touchend";
-			var move = "touchmove";
+			var start = "touchstart.longclick";
+			var end = "touchend.longclick";
+			var move = "touchmove.longclick";
 		}
 		else {
-			var start = "mousedown";
-			var end = "mouseup";
-			var move = "mousemove";
+			var start = "mousedown.longclick";
+			var end = "mouseup.longclick";
+			var move = "mousemove.longclick";
 		}
 
 		this.unbind( start )
 			.unbind( end )
 			.on( start, function(e){
+				var el = $(this);
 				mousedown_time = e.timeStamp;
 				timer = window.setTimeout(function() {
-					console.log( "long click" )
-					long_callback();
 					did_fire = true;
 					mousedown_time = 0;
-					$( e.target ).unbind( move );
+					el.unbind( move );
+					long_callback();
 				}, long_duration );
-				$( e.target )
-					.on( move, function(e){
+				if ( cancel_on_move ) {
+					el.on( move, function(e){
 						if ( timer && ( e.timeStamp - mousedown_time ) > 10 ) {
 							clearTimeout( timer );
 							timer = null;
@@ -45,18 +46,18 @@
 						}
 						return false;
 					});
+				}
 				return false; 
 			})
 			.on( end, function(e){
 				clearTimeout( timer );
 				timer = null;
+				$( this ).unbind( move );
+				mousedown_time = 0;
 				if ( ! did_fire ) {
-					console.log( "short click" )
 					short_callback();
 				}
-				$( e.target ).unbind( move );
 				did_fire = false;
-				mousedown_time = 0;
 				return false;
 			});
 	};
