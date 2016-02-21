@@ -67,7 +67,7 @@
 						var time_diff = ( e.timeStamp - self.current_click_time );
 						for ( i = 0; i < callbacks.length; i++ ) {
 							if ( callbacks[i].duration >= time_diff && callbacks[i].clicks == self.current_clicks ) {
-								callbacks[i].clickEnd();
+								callbacks[i].clickEnd( $(self.current_element), e );
 								self.current_element = false;
 								self.current_clicks = false;
 								self.current_click_time = false;

@@ -13,21 +13,21 @@ $( el ).longclick(
 ```
 $( el ).longclick( [
 	{
-		clickEnd: function(){
+		clickEnd: function( element, event ){
 			// Single click, 150 millis
 		},
 		duration: 150,
 		clicks: 1
 	},
 	{
-		clickEnd: function(){
+		clickEnd: function( element, event ){
 			// Single click, 1 second
 		},
 		duration: 1000,
 		clicks: 1
 	},
 	{
-		clickEnd: function(){
+		clickEnd: function( element, event ){
 			// Double click, 1 second
 		},
 		duration: 1000,
