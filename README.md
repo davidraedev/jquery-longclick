@@ -35,3 +35,8 @@ $( el ).longclick( [
 	},
 ], true, 200, true );
 ```
+
+#Caveats
+Since we are tracking our own double, triple, etc clicks. There will be a slight delay between the end of the click action and the start of its callback. This is because we have to wait a little to see if the user will click again.
+
+This is unavoidable, but has been minimized as much as possible. There is no delay on the 'last' click by not waiting if there are no click callbacks past the current number of clicks. It is also tweakable with the 3rd argument, but 200ms is about the lowest you can go for mouse clicking.
