@@ -1,11 +1,16 @@
-# jquery-longclick
+# [jquery-longclick](https://daraeman.github.io/jquery-longclick)
 Set arbitrary amount of time based clicks (100ms, 500ms... click), and abitrary amount of click based clicks (double, triple... click)
 
-(Demo)[https://daraeman.github.io/jquery-longclick]
-
 # Usage:
-$( el ).longclick( callbacks, ignore_dragging = true, max_time_between_clicks = 250, fire_every_click_up_to_the_final = false );
-
+```
+$( el ).longclick(
+	callbacks,
+	ignore_dragging = true,
+	max_time_between_clicks = 250,
+	fire_every_click_up_to_the_final = false
+);
+```
+```
 $( el ).longclick( [
 	{
 		clickEnd: function(){
@@ -29,3 +34,4 @@ $( el ).longclick( [
 		clicks: 2
 	},
 ], true, 200, true );
+```
