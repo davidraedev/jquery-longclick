@@ -1,5 +1,9 @@
 html, body {
+	position: absolute;
+	top: 0px;
+	left: 0px;
 	padding: 0px;
+	margin: 0px;
 	width: 100%;
 	font-size: 16px;
 	font-family: "Arial", sans-serif;
@@ -103,5 +107,8 @@ html, body {
 	}
 	#results .section {
 		display: inline-block;
+	}
+	#clickbox {
+		width: calc( 98% - 20px );
 	}
 }
