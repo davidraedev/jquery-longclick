@@ -7,7 +7,7 @@ html, body {
 }
 .header_container {
 	font-size: 2rem;
-	margin: 65px 10px;
+	margin: 65px 30px;
 }
 .header_container .header {
 	margin-bottom: 1rem;
@@ -82,9 +82,26 @@ html, body {
 #results .section .test.on:before {
 	background: rgb( 0,200,0 );
 }
-#fork_banner {
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	border: 0px;
+@media ( max-width: 400px ) {
+	#fork_banner {
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		-moz-transform: none;
+		-webkit-transform: none;
+		-o-transform: none;
+		-ms-transform: none;
+		transform: none;
+		width: 100%;
+	}
+	#fork_banner a {
+		height: 34px;
+		line-height: 34px;
+	}
+	#results {
+		margin-left: 0px;
+	}
+	#results .section {
+		display: inline-block;
+	}
 }
