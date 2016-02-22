@@ -25,6 +25,9 @@ html, body {
 	border: 10px dashed rgb( 220,220,220 );
 	border-radius: 20px;
 	cursor: pointer;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 #clickbox:before {
 	content: "Click Here";
